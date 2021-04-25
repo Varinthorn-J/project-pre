@@ -1,24 +1,23 @@
 import face_recognition
 import cv2
  
-videoCapture = cv2.VideoCapture(0)
-database_image = face_recognition.load_image_file("Image/game.jpg")
+#videoCapture = cv2.VideoCapture(0)
+videoCapture = cv2.VideoCapture("Image/yong.jpg")
+
+database_image = face_recognition.load_image_file("Image/bos.jpg")
 data_base_encoding1 = face_recognition.face_encodings(database_image)[0]
 database_image = face_recognition.load_image_file("Image/Warinthon2.jpg")
 data_base_encoding2 = face_recognition.face_encodings(database_image)[0]
-database_image = face_recognition.load_image_file("Image/an.jpg")
+database_image = face_recognition.load_image_file("Image/oii.jpg")
 data_base_encoding3 = face_recognition.face_encodings(database_image)[0]
-database_image = face_recognition.load_image_file("Image/job.jpg")
+database_image = face_recognition.load_image_file("Image/yong.jpg")
 data_base_encoding4 = face_recognition.face_encodings(database_image)[0]
 database_image = face_recognition.load_image_file("Image/oat.jpg")
 data_base_encoding5 = face_recognition.face_encodings(database_image)[0]
-database_image = face_recognition.load_image_file("Image/oii.jpg")
-data_base_encoding6 = face_recognition.face_encodings(database_image)[0]
 
-person_face_encodings = [data_base_encoding1,data_base_encoding2,data_base_encoding3,data_base_encoding4,data_base_encoding5,data_base_encoding6]
-person_face_names = ["game","Warinthon","an","job","oat","oii"]
+person_face_encodings = [data_base_encoding1,data_base_encoding2,data_base_encoding3,data_base_encoding4,data_base_encoding5]
+person_face_names = ["Boss","Warinthon","Oii","Yong","oat"]
 
- 
 data_locations = []
 data_encodings = []
 data_names = []
@@ -48,11 +47,13 @@ while True:
         right *= 4
         bottom *= 4
         left *= 4
+
         cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
         cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 255, 0), cv2.FILLED)
         font = cv2.FONT_HERSHEY_DUPLEX
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
     cv2.imshow('Video', frame)
+
     if cv2.waitKey(1) & 0xFF == ord('x'):
         break
 videoCapture.release()
